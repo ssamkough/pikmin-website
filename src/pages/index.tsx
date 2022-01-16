@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import App from '../components/App';
 import Image from '../components/Image';
+import Link from '../components/Link';
 import Text from '../components/Text';
 
 const Container = styled.div`
@@ -29,6 +30,8 @@ const Body = styled.div`
   max-width: 800px;
   max-height: 400px;
   ${commonCSS};
+  flex-direction: column;
+  gap: 10px;
   padding: 10px;
 `;
 
@@ -57,7 +60,18 @@ const Home = (): React.ReactElement => (
       </Header>
       <Body>
         <Text variant="h2" color="pink">
-          the pikmin decompilation projects are managed by a bunch of clever folks
+          this website is home to the pikmin decompilation projects
+        </Text>
+        <Text variant="h2" color="pink">
+          the goal of the pikmin decompilation projects is to fully decompile the{' '}
+          <Link urlString="https://github.com/projectPiki/pikmin">pikmin 1</Link> and{' '}
+          <Link urlString="https://github.com/projectPiki/pikmin2">pikmin 2</Link>
+        </Text>
+        <Text variant="h2" color="pink">
+          pikmin 1 progress: ???
+        </Text>
+        <Text variant="h2" color="pink">
+          pikmin 2 progress: ???
         </Text>
       </Body>
       <Footer>
