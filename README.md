@@ -1,5 +1,7 @@
 # pikmin decompilation website 🌺
 
+[pikmin.dev](https://pikmin.dev)
+
 website for the [pikmin decompilation projects](https://github.com/projectPiki/)
 
 ## technologies 🔑
