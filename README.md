@@ -8,7 +8,7 @@ website for the [pikmin decompilation projects](https://github.com/projectPiki/)
 - [react](https://reactjs.org/)
 - [next.js](https://nextjs.org/)
 
-## todos
+## todos ☑️
 
 - add progress:
   - pikmin1
