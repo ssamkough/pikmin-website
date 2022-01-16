@@ -22,6 +22,14 @@ const Body = styled.div`
     url('${WALLPAPER_PATH}');
 `;
 
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 /**
  * renders base layout for every page
  */
@@ -33,7 +41,9 @@ const App = ({ children }: Props): React.ReactElement => (
       <meta name="description" content={DESCRIPTION} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <Body>{children}</Body>
+    <Body>
+      <Container>{children}</Container>
+    </Body>
   </>
 );
 
