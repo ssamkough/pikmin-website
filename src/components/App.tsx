@@ -20,6 +20,7 @@ const Body = styled.div`
       rgba(255, 255, 255, ${BACKGROUND_OPACITY})
     ),
     url('${WALLPAPER_PATH}');
+  overflow: hidden;
 `;
 
 const Container = styled.div`
