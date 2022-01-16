@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import App from '../components/App';
 import Image from '../components/Image';
 import Link from '../components/Link';
@@ -9,19 +9,11 @@ const Container = styled.div`
   max-width: 800px;
   height: 100%;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
   padding: 40px;
-`;
-
-const commonCSS = css`
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 16px;
-  display: flex;
 `;
 
 const Header = styled.div`
@@ -34,10 +26,12 @@ const Header = styled.div`
 
 const Body = styled.div`
   max-width: 800px;
-  max-height: 400px;
-  ${commonCSS};
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  display: flex;
   flex-flow: column wrap;
-  gap: 10px;
+  gap: 20px;
   padding: 10px;
 `;
 
@@ -48,7 +42,11 @@ const Flex = styled.div`
 const Footer = styled.div`
   max-width: 800px;
   max-height: 100px;
-  ${commonCSS};
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  padding: 10px;
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -70,20 +68,26 @@ const Home = (): React.ReactElement => (
         </Text>
       </Header>
       <Body>
-        <Text variant="h2" color="pink">
+        <Text variant="h2" font="Pikmin" color="pink">
           this website is home to the pikmin decompilation projects
         </Text>
         <Flex>
-          <Text variant="h2" color="pink">
-            the goal of the pikmin decompilation projects is to fully decompile the{' '}
-            <Link urlString="https://github.com/projectPiki/pikmin">pikmin 1</Link> and{' '}
-            <Link urlString="https://github.com/projectPiki/pikmin2">pikmin 2</Link>
+          <Text variant="h2" font="Pikmin" color="pink">
+            the pikmin decompilation projects are ongoing projects to reverse-engineer the
+            sourcecode for{' '}
+            <Link urlString="https://github.com/projectPiki/pikmin" reverseColors>
+              pikmin 1
+            </Link>{' '}
+            and{' '}
+            <Link urlString="https://github.com/projectPiki/pikmin2" reverseColors>
+              pikmin 2
+            </Link>
           </Text>
         </Flex>
-        <Text variant="h2" color="pink">
+        <Text variant="h2" font="Pikmin" color="white">
           pikmin 1 progress: ???
         </Text>
-        <Text variant="h2" color="pink">
+        <Text variant="h2" font="Pikmin" color="white">
           pikmin 2 progress: ???
         </Text>
       </Body>

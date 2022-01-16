@@ -5,21 +5,23 @@ import theme from '../styles/theme';
 interface Props {
   urlString: string;
   children?: React.ComponentProps<'div'>['children'];
+  reverseColors?: boolean;
 }
 
-const Hyper = styled.a`
-  color: ${theme.colors.black};
+const Hyper = styled.a<{ reverseColors?: boolean }>`
+  font-family: Pikmin;
+  color: ${({ reverseColors }) => (reverseColors ? theme.colors.white : theme.colors.black)};
 
   &:hover {
-    color: ${theme.colors.white};
+    color: ${({ reverseColors }) => (reverseColors ? theme.colors.black : theme.colors.white)};
   }
 `;
 
 /**
  * renders component used for links
  */
-const Link = ({ urlString, children }: Props): React.ReactElement => (
-  <Hyper href={urlString} target="_blank" rel="noopener">
+const Link = ({ urlString, children, reverseColors }: Props): React.ReactElement => (
+  <Hyper href={urlString} target="_blank" rel="noopener" reverseColors={reverseColors}>
     {children || urlString}
   </Hyper>
 );
