@@ -19,3 +19,4 @@ website for the [pikmin decompilation projects](https://github.com/projectPiki/)
   - pikmin2
 - add correct discord link(?)
 - have more things in information sector
+- fix container stylings
