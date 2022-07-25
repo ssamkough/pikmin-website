@@ -98,7 +98,7 @@ const Home = (): React.ReactElement => (
           <Image
             src="/assets/discord.png"
             alt="discord logo"
-            link="https://github.com/projectPiki"
+            link="https://discord.gg/CWKqYMePX8"
             size="large"
           />
         </Footer>
