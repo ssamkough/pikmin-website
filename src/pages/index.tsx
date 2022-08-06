@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Papa from 'papaparse';
 import React, { useEffect, useState } from 'react';
+import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import styled from 'styled-components';
 import App from '../components/App';
 import Image from '../components/Image';
@@ -80,16 +81,12 @@ const Footer = styled.div`
   margin-bottom: 20px;
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isArray = (array: any): array is any[] =>
-  typeof array === 'object' && array?.length !== undefined;
-
 /**
  * Renders home page that displays information about projects.
  */
 const Home = (): React.ReactElement => {
   const [pikmin2Response, setPikmin2Response] = useState<GithubAPIGetRepositoryContentResponse>();
-  const [pikmin2Progress, setPikmin2Progress] = useState<PikminProgress>();
+  const [pikmin2Progress, setPikmin2Progress] = useState<PikminProgress[]>();
 
   useEffect(() => {
     const fetchCSV = async () => {
@@ -112,21 +109,27 @@ const Home = (): React.ReactElement => {
         complete: (results) => {
           const { data } = results;
           if (data) {
-            const latestRow = data[data.length - 1];
-            if (isArray(latestRow)) {
-              if (latestRow?.length >= 8) {
-                setPikmin2Progress({
-                  codeCountInPokos: parseInt(latestRow[0]),
-                  codeCompletionInBytes: parseInt(latestRow[1]),
-                  codeCompletionInPercentage: parseInt(latestRow[2]),
-                  dataCountInTreasures: parseInt(latestRow[3]),
-                  dataCompletionInBytes: parseInt(latestRow[4]),
-                  dataCompletionInPercentage: parseInt(latestRow[5]),
-                  sentence: latestRow[6],
-                  createdAt: latestRow[7],
-                });
-              }
-            }
+            // remove first element which contains the headers
+            data.shift();
+            setPikmin2Progress(
+              data.map((row) => {
+                const date = new Date(row[7]);
+                const createdAt = `${date.getUTCFullYear()}/${date.getUTCDate()}/${
+                  date.getUTCMonth() + 1
+                }`;
+
+                return {
+                  codeCountInPokos: parseInt(row[0]),
+                  codeCompletionInBytes: parseInt(row[1]),
+                  codeCompletionInPercentage: parseInt(row[2]),
+                  dataCountInTreasures: parseInt(row[3]),
+                  dataCompletionInBytes: parseInt(row[4]),
+                  dataCompletionInPercentage: parseInt(row[5]),
+                  sentence: row[6],
+                  createdAt,
+                };
+              }),
+            );
           }
         },
       });
@@ -166,8 +169,24 @@ const Home = (): React.ReactElement => {
               pikmin 1 progress: TBD
             </Text>
             <Text variant="h2" font="Pikmin" color="white">
-              pikmin 2 progress: {pikmin2Progress?.sentence}
+              pikmin 2 progress: {pikmin2Progress?.[pikmin2Progress?.length - 1]?.sentence}
             </Text>
+            {pikmin2Progress && (
+              <ResponsiveContainer width="100%" height={500}>
+                <LineChart data={pikmin2Progress}>
+                  <XAxis dataKey="createdAt" stroke="#FFFFFF" strokeWidth={2.5} />
+                  <YAxis stroke="#FFFFFF" strokeWidth={2.5} />
+                  <Tooltip />
+                  <Legend />
+                  <Line
+                    dataKey="codeCountInPokos"
+                    type="monotone"
+                    stroke="#8884d8"
+                    strokeWidth={5}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
           </Body>
           <Footer>
             <Image
