@@ -82,6 +82,9 @@ const Footer = styled.div`
   margin-bottom: 20px;
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isArray = (array: any): array is any[] => array?.length !== undefined;
+
 /**
  * Renders home page that displays information about projects.
  */
@@ -109,7 +112,7 @@ const Home = (): React.ReactElement => {
         skipEmptyLines: true,
         complete: (results) => {
           const { data } = results;
-          if (data) {
+          if (data && isArray(data)) {
             // remove first element which contains the headers
             data.shift();
             setPikmin2Progress(
