@@ -1,4 +1,4 @@
-export type ColorVariant = 'black' | 'white' | 'pink';
+export type ColorVariant = 'black' | 'white' | 'lightPink' | 'pink';
 
 type Color = {
   [key in ColorVariant]: string;
@@ -12,6 +12,7 @@ const theme: Theme = {
   colors: {
     black: '#000000',
     white: '#FFFFFF',
+    lightPink: '#FFC0CB',
     pink: '#F40F89',
   },
 };

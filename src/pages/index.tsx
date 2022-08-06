@@ -7,6 +7,7 @@ import App from '../components/App';
 import Image from '../components/Image';
 import Link from '../components/Link';
 import Text from '../components/Text';
+import theme from '../styles/theme';
 
 const CSV_FILE_NAME = 'progress.csv';
 const CSV_FILE_URL = `https://api.github.com/repos/projectPiki/pikmin2/contents/tools/${CSV_FILE_NAME}`;
@@ -181,7 +182,13 @@ const Home = (): React.ReactElement => {
                   <Line
                     dataKey="codeCountInPokos"
                     type="monotone"
-                    stroke="#8884d8"
+                    stroke={theme.colors.pink}
+                    strokeWidth={5}
+                  />
+                  <Line
+                    dataKey="dataCountInTreasures"
+                    type="monotone"
+                    stroke={theme.colors.lightPink}
                     strokeWidth={5}
                   />
                 </LineChart>
