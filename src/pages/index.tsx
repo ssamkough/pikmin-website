@@ -114,9 +114,9 @@ const Home = (): React.ReactElement => {
             setPikmin2Progress(
               data.map((row) => {
                 const date = new Date(row[7]);
-                const createdAt = `${date.getUTCFullYear()}/${date.getUTCDate()}/${
+                const createdAt = `${date.getUTCFullYear()}/${
                   date.getUTCMonth() + 1
-                }`;
+                }/${date.getUTCDate()}`;
 
                 return {
                   codeCountInPokos: parseInt(row[0]),
