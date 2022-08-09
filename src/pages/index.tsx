@@ -116,23 +116,16 @@ const Home = (): React.ReactElement => {
             // remove first element which contains the headers
             data.shift();
             setPikmin2Progress(
-              data.map((row) => {
-                const date = new Date(row[7]);
-                const createdAt = `${date.getUTCFullYear()}/${
-                  date.getUTCMonth() + 1
-                }/${date.getUTCDate()}`;
-
-                return {
-                  codeCountInPokos: parseInt(row[0]),
-                  codeCompletionInBytes: parseInt(row[1]),
-                  codeCompletionInPercentage: parseInt(row[2]),
-                  dataCountInTreasures: parseInt(row[3]),
-                  dataCompletionInBytes: parseInt(row[4]),
-                  dataCompletionInPercentage: parseInt(row[5]),
-                  sentence: row[6],
-                  createdAt,
-                };
-              }),
+              data.map((row) => ({
+                codeCountInPokos: parseInt(row[0]),
+                codeCompletionInBytes: parseInt(row[1]),
+                codeCompletionInPercentage: parseInt(row[2]),
+                dataCountInTreasures: parseInt(row[3]),
+                dataCompletionInBytes: parseInt(row[4]),
+                dataCompletionInPercentage: parseInt(row[5]),
+                sentence: row[6],
+                createdAt: new Intl.DateTimeFormat('en-US').format(new Date(row[7])),
+              })),
             );
           }
         },
