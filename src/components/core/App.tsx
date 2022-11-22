@@ -17,18 +17,6 @@ const PAGE_URL = 'https://pikmin.dev/';
 const Body = styled.div`
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, ${BACKGROUND_OPACITY}),
-      rgba(255, 255, 255, ${BACKGROUND_OPACITY})
-    ),
-    url('${WALLPAPER_PATH}');
-  background-size: 100% 100%;
-  overflow: scroll;
-`;
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,9 +53,7 @@ const App = ({ children }: Props): React.ReactElement => (
 
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <Body>
-      <Container>{children}</Container>
-    </Body>
+    <Body>{children}</Body>
   </>
 );
 
