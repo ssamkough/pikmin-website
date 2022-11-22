@@ -12,6 +12,7 @@ const Container = styled.header`
 const Heading = styled.h1`
   padding: 0px;
   margin: 0px;
+  font-size: inherit;
 `;
 
 /**
