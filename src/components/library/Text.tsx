@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css, CSSObject } from 'styled-components';
-import { ColorVariant } from '../styles/theme';
+import { ColorVariant } from '../../styles/theme';
 
 type TextVariant = 'h0' | 'h1' | 'h2' | 'h3';
 

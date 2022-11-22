@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import theme from '../styles/theme';
+import theme from '../../styles/theme';
 
 interface Props {
   urlString: string;
@@ -11,7 +11,7 @@ interface Props {
 const Hyper = styled.a<{ reverseColors?: boolean }>`
   font-family: Pikmin;
   color: ${({ reverseColors }) => (reverseColors ? theme.colors.white : theme.colors.black)};
-
+  transition: all 0.2s ease-out;
   &:hover {
     color: ${({ reverseColors }) => (reverseColors ? theme.colors.black : theme.colors.white)};
   }

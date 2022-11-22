@@ -6,7 +6,7 @@ interface Props {
   children: React.ComponentProps<'div'>['children'];
 }
 
-const TITLE = 'pikmin';
+const TITLE = 'pikmin decomp';
 const BACKGROUND_OPACITY = 0.4;
 const DESCRIPTION = 'website that talks about decompilation projects going on for pikmin';
 const WALLPAPER_PATH = '/assets/wallpaper.png';
@@ -15,8 +15,8 @@ const FAVICON_PATH = '/favicon.ico';
 const PAGE_URL = 'https://pikmin.dev/';
 
 const Body = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-image: linear-gradient(
       rgba(255, 255, 255, ${BACKGROUND_OPACITY}),
       rgba(255, 255, 255, ${BACKGROUND_OPACITY})
