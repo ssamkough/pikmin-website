@@ -9,17 +9,24 @@ const Container = styled.header`
   gap: 10px;
 `;
 
+const Heading = styled.h1`
+  padding: 0px;
+  margin: 0px;
+`;
+
 /**
  * Header of the home page
  */
 const Header = (): React.ReactElement => (
   <Container>
-    <Text variant="h0" font="Pikmin" color="white">
-      pikmin
-    </Text>
-    <Text variant="h0" font="Pikmin" color="pink">
-      decomp
-    </Text>
+    <Heading>
+      <Text variant="h0" font="Pikmin" color="white">
+        pikmin
+      </Text>{' '}
+      <Text variant="h0" font="Pikmin" color="pink">
+        decomp
+      </Text>
+    </Heading>
   </Container>
 );
 
