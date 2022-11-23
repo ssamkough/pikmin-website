@@ -19,10 +19,19 @@ interface GithubAPIGetRepositoryContentResponse {
 }
 
 /**
+ * These fields are not from the original progress.csv, but are used
+ * for the charts to make them more digestable
+ */
+interface ChartData {
+  codeCompletionInReadablePercantage: string;
+  dataCompletionInReadablePercantage: string;
+}
+
+/**
  * Fields were manually transferred from the progress.csv file
  * @ref https://github.com/projectPiki/pikmin2/blob/main/tools/progress.csv
  */
-interface PikminProgress {
+interface RawPikminProgress {
   codeCountInPokos: number;
   codeCompletionInBytes: number;
   codeCompletionInPercentage: number;
@@ -33,8 +42,26 @@ interface PikminProgress {
   createdAt: string;
 }
 
+type PikminProgress = ChartData & RawPikminProgress;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isArray = (array: any): array is any[] => array?.length !== undefined;
+
+const nf = new Intl.NumberFormat('en-US', {
+  style: 'decimal',
+  unit: 'percent',
+  maximumFractionDigits: 2,
+});
+const formattedPercentage = (stringifiedProgressPercentage: string) => {
+  const percentage = parseFloat(stringifiedProgressPercentage) * 100;
+  return nf.format(percentage);
+};
+
+const dtf = new Intl.DateTimeFormat('en-US');
+const formattedCreatedAt = (createdAt: string) => {
+  const date = new Date(createdAt);
+  return dtf.format(date);
+};
 
 const Charts = (): React.ReactElement => {
   const [pikmin2Response, setPikmin2Response] = useState<GithubAPIGetRepositoryContentResponse>();
@@ -68,11 +95,13 @@ const Charts = (): React.ReactElement => {
                 codeCountInPokos: parseInt(row[0]),
                 codeCompletionInBytes: parseInt(row[1]),
                 codeCompletionInPercentage: parseInt(row[2]),
+                codeCompletionInReadablePercantage: formattedPercentage(row[2]),
                 dataCountInTreasures: parseInt(row[3]),
                 dataCompletionInBytes: parseInt(row[4]),
                 dataCompletionInPercentage: parseInt(row[5]),
+                dataCompletionInReadablePercantage: formattedPercentage(row[5]),
                 sentence: row[6],
-                createdAt: new Intl.DateTimeFormat('en-US').format(new Date(row[7])),
+                createdAt: formattedCreatedAt(row[7]),
               })),
             );
           }
@@ -84,26 +113,30 @@ const Charts = (): React.ReactElement => {
   return (
     <BodyContainer>
       <Text variant="h2" color="white">
-        pikmin 1 progress: TBD
-      </Text>
-      <Text variant="h2" color="white">
         pikmin 2 progress: {pikmin2Progress?.[pikmin2Progress?.length - 1]?.sentence}
       </Text>
       {pikmin2Progress && (
         <ResponsiveContainer width="100%" height={500}>
           <LineChart data={pikmin2Progress}>
             <XAxis dataKey="createdAt" stroke="#FFFFFF" strokeWidth={2.5} />
-            <YAxis stroke="#FFFFFF" strokeWidth={2.5} />
+            <YAxis
+              tickFormatter={(value) => `${value}%`}
+              domain={[0, 100]}
+              stroke="#FFFFFF"
+              strokeWidth={2.5}
+            />
             <Tooltip />
             <Legend />
             <Line
-              dataKey="codeCountInPokos"
+              dataKey="codeCompletionInReadablePercantage"
+              name="code completion"
               type="monotone"
               stroke={theme.colors.pink}
               strokeWidth={5}
             />
             <Line
-              dataKey="dataCountInTreasures"
+              dataKey="dataCompletionInReadablePercantage"
+              name="data completion"
               type="monotone"
               stroke={theme.colors.lightPink}
               strokeWidth={5}
