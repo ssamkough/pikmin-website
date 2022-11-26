@@ -133,6 +133,7 @@ const Charts = (): React.ReactElement => {
               type="monotone"
               stroke={theme.colors.pink}
               strokeWidth={5}
+              dot={false}
             />
             <Line
               dataKey="dataCompletionInReadablePercantage"
@@ -140,6 +141,7 @@ const Charts = (): React.ReactElement => {
               type="monotone"
               stroke={theme.colors.lightPink}
               strokeWidth={5}
+              dot={false}
             />
           </LineChart>
         </ResponsiveContainer>
