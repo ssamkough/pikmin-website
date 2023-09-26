@@ -9,7 +9,11 @@ website for the [pikmin decompilation projects](https://github.com/projectPiki/)
 in order to get this project running, follow these steps:
 
 1. [install nvm](https://github.com/nvm-sh/nvm#installing-and-updating), a version manager for node.js. this installs node.js and npm
+
+- check that npm was installed by running: `npm -v`
+
 2. install all dependencies for this project: `npm i`
+
 3. run the project: `npm run dev`
 
 and the project should be running at http://localhost:3000
