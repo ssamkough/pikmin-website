@@ -4,10 +4,12 @@
 
 website for the [pikmin decompilation projects](https://github.com/projectPiki/)
 
-## technologies 🔑
+## getting started 🏃
 
-- [typescript](https://www.typescriptlang.org/)
-- [react](https://reactjs.org/)
-  - [styled components](https://styled-components.com/)
-- [next.js](https://nextjs.org/)
-- [netlify](https://www.netlify.com/)
+in order to get this project running, follow these steps:
+
+1. [install nvm](https://github.com/nvm-sh/nvm#installing-and-updating), a version manager for node.js. this installs node.js and npm
+2. install all dependencies for this project: `npm i`
+3. run the project: `npm run dev`
+
+and the project should be running at http://localhost:3000
